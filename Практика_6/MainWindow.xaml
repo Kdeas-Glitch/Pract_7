@@ -5,44 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Практика_6"
         mc:Ignorable="d"
-        Title="Регистрация нового пользователя" Height="555" Width="516"
+        Title="Регистрация нового пользователя" Height="1000" Width="500"
         >
-    <Border CornerRadius="45" >
-        <Grid >
+    <StackPanel Orientation="Vertical">
+        <Border BorderThickness="2" BorderBrush="Black" Width="260" HorizontalAlignment="Left">
+            <Grid Width="260" Height="260" VerticalAlignment="Top" HorizontalAlignment="Left" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="260"/>
-            <RowDefinition Height="130"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="225"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <DockPanel LastChildFill="False" Background="LightBlue" Height="40">
-            <Button Content="Главная" DockPanel.Dock="left" Margin="5" Width="100" Height="30"/>
-            <Button Content="Профиль" DockPanel.Dock="left" Margin="5" Width="100" Height="30"/>
-            <Button Content="Настройки" DockPanel.Dock="left" Margin="5" Width="100" Height="30"/>
-            <Button Content="Помощь" DockPanel.Dock="left" Margin="5" Width="100" Height="30"/>
-        </DockPanel>
-
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="0"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="205"/>
-                </Grid.RowDefinitions>
-                <Border BorderThickness="0.5" BorderBrush="Black" Padding="8">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="20"/>
-                        </Grid.RowDefinitions>
-                        <Button Grid.Row="1"  Height="20">Загрузить фото</Button>
-                    </Grid>
-                </Border>
-            </Grid>
             <Grid Grid.Column="1" Grid.ColumnSpan="2" >
                 <Grid>
                     <Grid.RowDefinitions>
@@ -52,51 +30,75 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                        </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Margin="5">ФИО:</Label>
-                    <TextBox Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="1" Height="20"></TextBox>
-                    <Label Grid.Row="1" Grid.Column="0" Margin="5">Email:</Label>
-                    <TextBox Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Height="20"></TextBox>
-                    <Label Grid.Row="2" Grid.Column="0" Margin="5">Телефон:</Label>
-                    <TextBox Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Height="20"></TextBox>
-                    <Label Grid.Row="3" Grid.Column="0" Margin="5">Дата Рождения:</Label>
-                    <DatePicker Height="25" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"></DatePicker>
-                    <Label Grid.Row="4" Grid.Column="0" Margin="5">Пол:</Label>
-                    <Grid Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="1" Height="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <RadioButton Grid.ColumnSpan="2">Мужской</RadioButton>
-                        <RadioButton Grid.Column="1" >Женский</RadioButton>
-                    </Grid>
-                    <Label Grid.Row="5" Grid.Column="0" Margin="5">Пароль:</Label>
-                    <TextBox Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" Height="20"></TextBox>
-                    <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">Подтверждение пароля:</Label>
-                    <TextBox Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="2" Height="20"></TextBox>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="5">Имя:</Label>
+                    <TextBox Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="1" Height="20" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="5">Фамилия:</Label>
+                            <TextBox Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Height="20" Text="{Binding Last_Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="5">Отчество:</Label>
+                            <TextBox Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Height="20" Text="{Binding Middle_Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="0" Margin="5">Специальность:</Label>
+                            <TextBox Height="25" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Specialisation, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <Label Grid.Row="4" Grid.Column="0" Margin="5">Пароль:</Label>
+                            <TextBox Height="25" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </Grid>
             </Grid>
-            
+
         </Grid>
-        <WrapPanel Grid.Row="2" Background="#f0f0f0" Margin="15">
-            <Label>*Пароль должен содержать минимум 8 символов.</Label>
-            <Label>*Email должен быть в формате name@mail.com.</Label>
-            <Label>*Все поля обязательны.</Label>
-        </WrapPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Width="290" DockPanel.Dock="Right" HorizontalAlignment="Right">
-            <Button Height="20" Margin="15 0" Width="150">Зарегестрироваться</Button>
-            <Button Height="20" Width="90" >Отмена</Button>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Background="Gray">
-            <Label FontSize="10">Готово</Label>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Width="260" DockPanel.Dock="Right" HorizontalAlignment="Right">
+            <Button Height="20" Margin="5 0" Width="150" Click="MessageUser">Зарегестрироваться</Button>
+            <Button Height="20" Width="90" Click="DeleteUser">Отмена</Button>
         </StackPanel>
     </Grid>
-    </Border>
+        </Border>
+        <Border BorderThickness="2" BorderBrush="Black" Width="260" HorizontalAlignment="Left">
+            <Grid Width="260" HorizontalAlignment="Left" Height="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Margin="5" >ID:</Label>
+                <TextBox Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="1" Height="20" Name="_ID"></TextBox>
+                <Label Grid.Row="1" Grid.Column="0" Margin="5" >Пароль:</Label>
+                <TextBox Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Height="20" Name="_Password"></TextBox>
+                <Button Click="Login" Grid.Row="2" Grid.ColumnSpan="2" Width="260" HorizontalAlignment="Left">Войти</Button>
+            </Grid>
+        </Border>
+        <Border BorderThickness="2" BorderBrush="Black" Width="260" HorizontalAlignment="Left">
+            <Grid Width="260" HorizontalAlignment="Left" Height="190">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Margin="5">ID:</Label>
+                <Label Grid.Row="0" Grid.Column="1" Height="35" Name="ID"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Margin="5">ФИО:</Label>
+                <Label Grid.Row="1" Grid.Column="1" Height="35" Name="FIO"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Margin="5">Специальность:</Label>
+                <Label Grid.Row="2" Grid.Column="1" Height="35" Name="Spec"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Margin="5">Пароль:</Label>
+                <Label Grid.Row="3" Grid.Column="1" Height="35" Name="Pass"></Label>
+            </Grid>
+        </Border>
+    </StackPanel>
+
+
+
 </Window>
